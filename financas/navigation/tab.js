@@ -7,8 +7,8 @@ const Tab = createBottomTabNavigator();
 export default function MyTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Inicio} />
-      <Tab.Screen name="Profile" component={Lista} />
+      <Tab.Screen name="Inserir Manutenções" component={Inicio} />
+      <Tab.Screen name="Lista de Manutenções" component={Lista} />
     </Tab.Navigator>
   );
 }
