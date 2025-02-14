@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button} from 'react-native';
+import { View, TextInput, Button} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const App = () => {
+const Inicio = () => {
   const [texto, setTexto] = useState('');
 
   const armazenarTexto = async () => {
@@ -27,4 +27,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Inicio;

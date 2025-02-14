@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Lista = () => {
@@ -16,6 +16,15 @@ const Lista = () => {
     }
   };
 
+  const excluirTodosItens = async () => {
+    try {
+      await AsyncStorage.clear();
+      setTextosArmazenados([]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <View style={{ padding: 50 }}>
       <Button title="Recuperar" onPress={recuperarTextos} />
@@ -26,6 +35,7 @@ const Lista = () => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
+      <Button title="Excluir todos os itens" onPress={excluirTodosItens} />
     </View>
   );
 };
