@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Lista = () => {
   const [itensArmazenados, setItensArmazenados] = useState([]);
+  const [itemExcluir, setItemExcluir] = useState('');
 
   useFocusEffect(
     React.useCallback(() => {
@@ -22,6 +23,25 @@ const Lista = () => {
     }, [])
   );
 
+  const excluirItem = async () => {
+    try {
+      const chaves = await AsyncStorage.getAllKeys();
+      const itens = await AsyncStorage.multiGet(chaves);
+      const itensArmazenados = itens.map((item) => JSON.parse(item[1]));
+      const itemExcluirIndex = itensArmazenados.findIndex((item) => item.texto === itemExcluir);
+      if (itemExcluirIndex !== -1) {
+        const chaveExcluir = chaves[itemExcluirIndex];
+        await AsyncStorage.removeItem(chaveExcluir);
+        setItensArmazenados(itensArmazenados.filter((item) => item.texto !== itemExcluir));
+        setItemExcluir(''); // Limpa o input após excluir
+      } else {
+        alert('Item não encontrado');
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   const excluirTodosItens = async () => {
     try {
       await AsyncStorage.clear();
@@ -33,6 +53,12 @@ const Lista = () => {
 
   return (
     <View style={{ padding: 50 }}>
+      <TextInput
+        value={itemExcluir}
+        onChangeText={(text) => setItemExcluir(text)}
+        placeholder="Digite o item a ser excluído"
+      />
+      <Button title="Excluir item" onPress={excluirItem} />
       <FlatList
         data={itensArmazenados}
         renderItem={({ item }) => (
