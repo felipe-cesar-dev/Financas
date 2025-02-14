@@ -1,4 +1,3 @@
-
 import { NavigationContainer } from '@react-navigation/native';
 import MyTabs from './navigation/tab';
 

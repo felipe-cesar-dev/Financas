@@ -3,7 +3,6 @@ import { View, Text, TextInput, Button, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Lista = () => {
-  const [texto, setTexto] = useState('');
   const [textosArmazenados, setTextosArmazenados] = useState([]);
 
   const recuperarTextos = async () => {
