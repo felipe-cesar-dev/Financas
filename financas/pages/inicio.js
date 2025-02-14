@@ -11,7 +11,7 @@ const Inicio = () => {
       await AsyncStorage.setItem(chave, texto);
       setTexto('');
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   };
 
