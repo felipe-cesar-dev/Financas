@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
-import SignIn from './screens/SignIn';
+import MyTabs from './routes';
 
 
 export default function App() {
   return (
       <NavigationContainer>
-        <SignIn/>
+        <MyTabs/>
       </NavigationContainer>
   );
 }
