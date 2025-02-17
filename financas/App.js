@@ -1,5 +1,4 @@
 import { NavigationContainer } from '@react-navigation/native';
-import MyTabs from './routes';
 import SignIn from './screens/SignIn';
 
 
